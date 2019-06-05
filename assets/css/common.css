@@ -81,8 +81,8 @@ img {
 }
 
 /* General */
-.container, header, footer {
-  max-width: 980px;
+.container, footer {
+  max-width: 90%;
   margin: auto;
 }
 .content-section {
@@ -121,7 +121,7 @@ img {
   color: white;
   font-size: 24px;
 }
-
+/* Media Queries */
 @media (max-width: 767px) {
   h1 {
     font-size: 32px;
@@ -133,7 +133,7 @@ img {
   h3 {
     font-size: 18px;
   }
-  ul {
-    padding-left: 20px;
-  }
+  .content-section {
+    margin-bottom: 2rem;
+  } 
 }

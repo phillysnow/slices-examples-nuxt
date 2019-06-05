@@ -12,13 +12,15 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-.footer
-  padding: 40px 0
-  margin: 0 auto
-  text-align: center
-  border-top: 1px solid #DADADA
-
-.logo
-  width: 100px
+<style scoped>
+.footer {
+  padding: 40px 0;
+  margin: 0 auto;
+  text-align: center;
+  border-top: 1px solid #DADADA;
+  margin-top: 25px;
+}
+.logo {
+  width: 100px;
+}
 </style>

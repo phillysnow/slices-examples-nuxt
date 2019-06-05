@@ -1,48 +1,72 @@
 <template>
-    <div class="container">
+    <section>
         <!-- Slice section template -->
         <section v-for="(slice, index) in slices" :key="'slice-' + index">
-            <!-- Text slice component -->
-            <template v-if="slice.slice_type === 'text_section'">
-                <text-slice :slice="slice"/>
+            <!-- Slider slice component -->
+            <template v-if="slice.slice_type === 'image_carousel'">
+                <carousel-slice :slice="slice"/>
             </template>
             <!-- Quote slice component -->
             <template v-else-if="slice.slice_type === 'quote'">
                 <quote-slice :slice="slice"/>
             </template>
-            <!-- Full Width Image slice component -->
-            <template v-else-if="slice.slice_type === 'full_width_image'">
-                <full-width-image :slice="slice"/>
-            </template>
-            <!-- Image Gallery slice component -->
+            <!-- Gallery slice component -->
             <template v-else-if="slice.slice_type === 'image_gallery'">
-                <image-gallery :slice="slice"/>
+                <gallery-slice :slice="slice"/>
             </template>
-            <!-- Image Highlight slice component -->
-            <template v-else-if="slice.slice_type === 'image_highlight'">
-                <image-highlight :slice="slice"/>
+            <!-- Text slice component -->
+            <template v-else-if="slice.slice_type === 'text_section'">
+                <text-slice :slice="slice"/>
+            </template>
+            <!-- Button slice component -->
+            <template v-else-if="slice.slice_type === 'button'">
+                <button-slice :slice="slice"/>
+            </template>
+            <!-- Download Button slice component -->
+            <template v-else-if="slice.slice_type === 'download_button'">
+                <download-button :slice="slice"/>
+            </template>
+            <!-- Code slice component -->
+            <template v-else-if="slice.slice_type === 'code_snippet'">
+                <code-slice :slice="slice"/>
+            </template>
+            <!-- Info slice component -->
+            <template v-else-if="slice.slice_type === 'more_info'">
+                <info-slice :slice="slice"/>
+            </template>
+            <!-- Embed slice component -->
+            <template v-else-if="slice.slice_type === 'embed'">
+                <embed-slice :slice="slice"/>
             </template>
         </section>
-    </div>
+    </section>
 </template>
 
 <script>
 // Imports for all slices
-const TextSlice = () => import("./slices/TextSlice.vue");
-const QuoteSlice = () => import("./slices/QuoteSlice.vue");
-const FullWidthImage = () => import("./slices/FullWidthImage.vue");
-const ImageGallery = () => import("./slices/ImageGallery.vue");
-const ImageHighlight = () => import("./slices/ImageHighlight.vue");
+const CarouselSlice = () => import("../components/slices/CarouselSlice.vue");
+const QuoteSlice = () => import("../components/slices/QuoteSlice.vue");
+const GallerySlice = () => import("../components/slices/GallerySlice.vue");
+const TextSlice = () => import("../components/slices/TextSlice.vue");
+const ButtonSlice = () => import("../components/slices/ButtonSlice.vue");
+const DownloadButton = () => import("../components/slices/DownloadButton.vue");
+const CodeSlice = () => import("../components/slices/CodeSlice.vue");
+const InfoSlice = () => import("../components/slices/InfoSlice.vue");
+const EmbedSlice = () => import("../components/slices/EmbedSlice.vue");
 
 export default {
   props: ['slices'],
   name: 'slices-block',
   components: {
-    TextSlice,
+    CarouselSlice,
     QuoteSlice,
-    FullWidthImage,
-    ImageGallery,
-    ImageHighlight
+    GallerySlice,
+    TextSlice,
+    ButtonSlice,
+    DownloadButton,
+    CodeSlice,
+    InfoSlice,
+    EmbedSlice
   },
 }
 </script>

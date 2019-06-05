@@ -1,10 +1,14 @@
 <template>
   <header class="site-header">
-    <nuxt-link to="/" class="logo">Example Site</nuxt-link>
+    <nuxt-link to="/" class="logo">
+      Examples
+    </nuxt-link>
     <nav>
       <ul>
         <li v-for="menuLink in menuLinks" :key="menuLink.id">
-          <prismic-link :field="menuLink.link">{{ $prismic.richTextAsPlain(menuLink.label) }}</prismic-link>
+          <prismic-link :field="menuLink.link">
+            {{ $prismic.richTextAsPlain(menuLink.label) }}
+          </prismic-link>
         </li>
       </ul>
     </nav>
@@ -14,68 +18,71 @@
 <script>
 export default {
   props: ['menuLinks'],
-  name: 'header-prismic',
+  name: 'header-prismic'
 }
 </script>
 
-<style lang="sass">
-.site-header
-  height: 30px
-  padding: 20px 0
-  color: #484d52
-  font-weight: 700
-  a
-    color: #484d52
-    font-weight: 700
-  nav a:hover
-    color: #72767B
+<style>
+/* Site header */
+.site-header {
+  height: 30px;
+  padding: 20px 0;
+}
+.site-header,
+.site-header a {
+  color: #484d52;
+  font-weight: 700;
+}
+.site-header nav a:hover {
+  color: #72767B;
+}
+.homepage .site-header nav a:hover {
+  color: #c8c9cb;
+}
+.site-header .logo {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 900;
+}
+.site-header nav {
+  float: right;
+}
+.site-header nav ul {
+  margin: 0;
+}
+.site-header nav li {
+  display: inline-block;
+  margin-left: 40px;
+}
 
-.homepage .site-header
-  color: #ffffff
-  a
-    color: #ffffff
-  nav a:hover
-    color: #c8c9cb
-
-.site-header
-  .logo
-    display: inline-block
-    font-size: 22px
-    font-weight: 900
-  nav
-    float: right
-    ul
-      margin: 0
-      padding-left: 0
-    li
-      display: inline-block
-      margin-left: 40px
-
-@media (max-width: 1060px)
-  .site-header
-    padding-left: 20px
-    padding-right: 20px
-
-@media (max-width: 767px)
-  .site-header
-    height: auto
-
-  .homepage .site-header
-    position: absolute
-    left: 0
-    right: 0
-
-  .site-header
-    .logo
-      display: block
-      text-align: center
-    nav
-      float: none
-      text-align: center
-      li
-        display: inline-block
-        margin-left: 10px
-        margin-right: 10px
+/* Media Queries */
+@media (max-width: 1060px) {
+  .site-header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .site-header {
+    height: auto;
+  }
+  .homepage .site-header {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  .site-header .logo {
+    display: block;
+    text-align: center;
+  }
+  .site-header nav {
+    float: none;
+    text-align: center;
+  }
+  .site-header nav li {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
 </style>
-
-

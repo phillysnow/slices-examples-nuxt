@@ -2,29 +2,29 @@
   <section class="homepage">
     <!-- Vue tag to add header component -->
     <header-prismic :menuLinks="menuLinks"/>
-    <!-- Button to edit document in dashboard -->
-    <prismic-edit-button :documentId="documentId"/>
-    <!-- Banner component -->
-    <homepage-banner :banner="banner"/>
-    <!-- Slices block component -->
-    <slices-block :slices="slices"/>
+    <!-- Template for page title. -->
+    <div class="container">
+      <p class="text">
+        {{ $prismic.richTextAsPlain(document.text) }}
+      </p>
+    </div>
+    <!-- Vue tag to add examples component -->
+    <examples-grid :examples="examples"/>
   </section>
 </template>
 
 <script>
 import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
-// Imports for all components
+// imports for all components
 import HeaderPrismic from '~/components/HeaderPrismic.vue'
-import HomepageBanner from '~/components/HomepageBanner.vue'
-import SlicesBlock from '~/components/SlicesBlock.vue'
+import ExamplesGrid from '~/components/ExamplesGrid.vue'
 
 export default {
-  name: 'Home',
+  name: 'homepage',
   components: {
     HeaderPrismic,
-    HomepageBanner,
-    SlicesBlock,
+    ExamplesGrid
   },
   head () {
     return {
@@ -38,31 +38,30 @@ export default {
 
       // Query to get the home page content
       let document = {}
-      const result = await api.getSingle('homepage')
+      const result = await api.getSingle("homepage")
       document = result.data
-
-      // Setting the banner as a variable
-      let banner = document.homepage_banner[0]
 
       // Query to get the menu content
       let menuContent = {}
       const menu = await api.getSingle('menu')
       menuContent = menu.data
 
-      // Load the edit button
-      if (process.client) window.prismic.setupEditButton()
+      // Query to get examples content
+      let examples = {}
+      const response = await api.query(
+        Prismic.Predicates.at("document.type", "example"),
+        { orderings : '[my.example.date desc]' }
+      )
+      examples = response.results
 
       return {
         // Page content
         document,
-        documentId: result.id,
-        banner,
-        // Set slices as variable
-        slices: document.page_content,
-
         // Menu
         menuContent,
-        menuLinks: menuContent.menu_links
+        menuLinks: menuContent.menu_links,
+        // examples content
+        examples
       }
     } catch (e) {
       error({ statusCode: 404, message: 'Page not found' })
