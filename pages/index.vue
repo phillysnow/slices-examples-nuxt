@@ -48,7 +48,7 @@ export default {
       // Query to get examples content
       let examples = {}
       const response = await api.query(
-        Prismic.Predicates.at("document.type", "example"),
+        Prismic.Predicates.at("document.type", "documentation"),
         { orderings : '[my.example.date desc]' }
       )
       examples = response.results

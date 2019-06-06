@@ -16,5 +16,9 @@ export default function (doc) {
     return '/example/' + doc.uid
   }
 
+  if (doc.type === 'documentation') {
+    return '/documentation/' + doc.uid
+  }
+
   return '/not-found'
 }
