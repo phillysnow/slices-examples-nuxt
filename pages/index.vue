@@ -1,9 +1,8 @@
 <template>
   <section class="homepage">
-    <!-- Vue tag to add header component -->
-    <header-prismic :menuLinks="menuLinks"/>
     <!-- Template for page title. -->
     <div class="container">
+    <header-prismic :menuLinks="menuLinks"/>
       <p class="text">
         {{ $prismic.richTextAsPlain(document.text) }}
       </p>
