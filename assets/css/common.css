@@ -12,7 +12,6 @@
  * Globals
  */
 body {
-  padding: 20px;
   color: #72767b;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
@@ -31,19 +30,19 @@ a {
 p a {
   text-decoration: underline;
 }
-h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
 }
 h1 {
-  font-family: ‘Lora’, Serif; 
   font-size: 42px; 
-  font-weight: normal; 
+  font-weight: 700; 
   color: #484D52; 
   line-height: 52px; 
   letter-spacing : 1.14px;
   margin-bottom: 1rem;
 }
 h2, h2 a {
+  padding-top: 50px; 
   margin-bottom: 1rem;
   color: #484d52;
   font-size: 32px;
@@ -82,7 +81,7 @@ img {
 
 /* General */
 .container, footer {
-  max-width: 90%;
+  max-width: 80%;
   margin: auto;
 }
 .content-section {
@@ -98,7 +97,7 @@ img {
           box-sizing: border-box;
   border-radius: 50%;
   bottom: 30px;
-  right: 30px;
+  left: 30px;
   height: 50px;
   width: 50px !important;
   display: -webkit-box;

@@ -1,5 +1,7 @@
 <template>
   <section>
+    <!-- Button to edit document in dashboard -->
+    <prismic-edit-button :documentId="documentId"/>
     <!-- Slice section template -->
     <slices-block :slices="slices"/>
   </section>
@@ -32,7 +34,11 @@ export default {
       const result = await api.getByUID("example", params.uid)
       document = result.data
 
+      // Load the edit button
+      if (process.client) window.prismic.setupEditButton()
+
       return {
+        documentId: result.id,
         // Set slices as variable
         slices: document.body,
       }

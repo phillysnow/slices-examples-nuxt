@@ -26,7 +26,7 @@ export default {
 /* Site header */
 .site-header {
   height: 30px;
-  padding: 20px 0;
+  padding: 50px 0;
 }
 .site-header,
 .site-header a {

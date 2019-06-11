@@ -40,7 +40,9 @@ export default {
 	100% { height: 600px; opacity: 1; margin: 20px; }
 }
 #core{
-  margin: 25px 0 50px 0;
+  padding: 25px 0 50px 0;
+  width: 80%;
+  margin: 0 auto;
 }
 dd a { 
   background: #fff; display: inline-block;

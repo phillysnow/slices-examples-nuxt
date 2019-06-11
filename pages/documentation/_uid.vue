@@ -1,16 +1,20 @@
 <template>
-  <section class="container">
-    <header-prismic :menuLinks="menuLinks"/>
-    <h2>
-        {{ $prismic.richTextAsPlain(document.title) }}
-    </h2>
-    <slices-block :slices="linkedDoc.body"/>
-    <section class="page">
-      <div class="content">
-        <!-- Slice section template -->
-        <slices-block :slices="slices"/>
-      </div>
-      <toc-slice :title="document.title" :slices="slices"/>
+  <section>
+    <toc-slice :title="document.title" :slices="slices"/>
+    <section class="container">
+      <!-- Button to edit document in dashboard -->
+      <prismic-edit-button :documentId="documentId"/>
+      <header-prismic :menuLinks="menuLinks"/>
+      <h1>
+          {{ $prismic.richTextAsPlain(document.title) }}
+      </h1>
+      <slices-block :slices="linkedDoc.body"/>
+      <section class="page">
+        <div class="content">
+          <!-- Slice section template -->
+          <slices-block :slices="slices"/>
+        </div>
+      </section>
     </section>
   </section>
 </template>
@@ -120,9 +124,13 @@ export default {
       const menu = await api.getSingle('menu')
       menuContent = menu.data
 
+      // Load the edit button
+      if (process.client) window.prismic.setupEditButton()
+
       return {
         // Post content
         document,
+        documentId: result.id,
         //content from link field
         linkedDoc: document.example_link.data,
         // Set slices as variable
@@ -140,11 +148,7 @@ export default {
 </script>
 
 <style>
-.page {
-  display: flex;  
-  flex-flow: row wrap;
-}
-.content {
-  width: 70%;
+h2.content {
+  padding-top: 50px !important;
 }
 </style>

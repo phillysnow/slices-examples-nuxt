@@ -1,5 +1,7 @@
 <template>
   <section class="homepage">
+    <!-- Button to edit document in dashboard -->
+    <prismic-edit-button :documentId="documentId"/>
     <!-- Template for page title. -->
     <div class="container">
     <header-prismic :menuLinks="menuLinks"/>
@@ -53,9 +55,13 @@ export default {
       )
       examples = response.results
 
+      // Load the edit button
+      if (process.client) window.prismic.setupEditButton()
+
       return {
         // Page content
         document,
+        documentId: result.id,
         // Menu
         menuContent,
         menuLinks: menuContent.menu_links,
