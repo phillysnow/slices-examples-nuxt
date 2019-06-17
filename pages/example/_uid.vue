@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="container">
     <!-- Button to edit document in dashboard -->
     <prismic-edit-button :documentId="documentId"/>
     <!-- Slice section template -->

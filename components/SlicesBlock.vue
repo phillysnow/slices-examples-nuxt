@@ -14,6 +14,10 @@
             <template v-else-if="slice.slice_type === 'image_gallery'">
                 <gallery-slice :slice="slice"/>
             </template>
+            <!-- title slice component -->
+            <template v-else-if="slice.slice_type === 'title'">
+                <title-slice :slice="slice"/>
+            </template>
             <!-- Text slice component -->
             <template v-else-if="slice.slice_type === 'text_section'">
                 <text-slice :slice="slice"/>
@@ -47,6 +51,7 @@
 const CarouselSlice = () => import("../components/slices/CarouselSlice.vue");
 const QuoteSlice = () => import("../components/slices/QuoteSlice.vue");
 const GallerySlice = () => import("../components/slices/GallerySlice.vue");
+const TitleSlice = () => import("../components/slices/TitleSlice.vue");
 const TextSlice = () => import("../components/slices/TextSlice.vue");
 const ButtonSlice = () => import("../components/slices/ButtonSlice.vue");
 const DownloadButton = () => import("../components/slices/DownloadButton.vue");
@@ -61,6 +66,7 @@ export default {
     CarouselSlice,
     QuoteSlice,
     GallerySlice,
+    TitleSlice,
     TextSlice,
     ButtonSlice,
     DownloadButton,

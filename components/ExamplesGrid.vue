@@ -1,15 +1,13 @@
 <template>
-  <section class="container">
-    <div class="auto-grid">
-      <div v-for="example in examples" :key="example.id" v-bind:example="example">
-        <router-link :to="linkResolver(example)">
-          <div class="box">
-            <h2>{{ $prismic.richTextAsPlain(example.data.title) }}</h2>
-          </div>
-        </router-link>
-      </div>
+  <div class="auto-grid">
+    <div v-for="example in examples" :key="example.id" v-bind:example="example">
+      <router-link :to="linkResolver(example)">
+        <div class="box" :style="{ backgroundColor: example.data.bgclr}">
+          <h2>{{ $prismic.richTextAsPlain(example.data.title) }}</h2>
+        </div>
+      </router-link>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -29,28 +27,6 @@ export default {
 </script>
 
 <style scoped>
-body {
-  background: #efefef;
-  padding: 1rem;
-  line-height: 1.4;
-  font-family: sans-serif;
-}
-.blog-main {
-  max-width: 700px;
-  margin: auto;
-}
-.blog-post {
-  margin-bottom: 3rem;
-}
-.blog-post h2 {
-  margin: 0;
-}
-.blog-post-meta {
-  color: #9A9A9A;
-  font-family: 'Lato', sans-serif;
-  margin-bottom: 8px;
-  font-size: 16px;
-}
 .auto-grid {
   --auto-grid-min-size: 16rem;
   display: grid;
@@ -62,15 +38,11 @@ body {
   text-align: center;
   font-size: 1.2rem;
   background: #eb4d4b;
+  background-size: 100%;
+  background-repeat: no-repeat;
   color: #ffffff;
   min-height: 100px;
   max-height: 100px;
-}
-/* Media Queries */
-@media (max-width: 767px) {
-  .blog-main {
-    padding: 0 20px;
-    font-size: 18px;
-  }
+  background-position: center bottom; 
 }
 </style>

@@ -4,13 +4,15 @@
     <prismic-edit-button :documentId="documentId"/>
     <!-- Template for page title. -->
     <div class="container">
-    <header-prismic :menuLinks="menuLinks"/>
-      <p class="text">
-        {{ $prismic.richTextAsPlain(document.text) }}
-      </p>
+      <header-prismic :menuLinks="menuLinks"/>
+      <section class="home-content">
+        <p class="text">
+          {{ $prismic.richTextAsPlain(document.text) }}
+        </p>
+        <!-- Vue tag to add examples component -->
+        <examples-grid :examples="examples"/>
+      </section>
     </div>
-    <!-- Vue tag to add examples component -->
-    <examples-grid :examples="examples"/>
   </section>
 </template>
 
@@ -74,3 +76,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.home-content{
+  margin-top: 150px;
+}
+</style>

@@ -16,17 +16,21 @@ export default {
 
 <style scoped>
 .button {
-  background-color: green;
-  box-shadow: 0 5px 0 grey;
+  background-color: #5163BA;
   color: white;
   padding: 1em 1.5em;
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
+  width: 350px;
+  height: 30px;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 30px;
 }
 
 .button:hover {
-  background-color: greenyellow;
+  background-color: #6f7cbb;
   cursor: pointer;
 }
 

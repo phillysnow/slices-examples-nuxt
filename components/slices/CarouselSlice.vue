@@ -3,11 +3,11 @@
     <transition-group name='fade' tag='div'>
       <div v-for="number in [currentNumber]" :key='number'>
         <div 
-          class='item' 
-          :style="{ backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url(' + currentItem.image.url + ')' }"
+          class='item'
           v-on:mouseover="stopRotation"
           v-on:mouseout="startRotation"
           >
+          <prismic-image class="slider-img" :field="currentItem.image"/>
           <a @click="prev" href='#' class="arrows prev"></a>
           <h4 class="slider-text"> {{ $prismic.richTextAsPlain(currentItem.text) }} </h4>
           <a @click="next" href='#' class="arrows next"></a>
@@ -56,7 +56,8 @@ export default {
 
 <style>
 .carousel {
-  margin: 25px 0 50px 0;
+  position: relative;
+  margin-top: 100px;
 }
 .fade-enter-active, .fade-leave-active {
   transition: all 0.8s ease;
@@ -68,38 +69,58 @@ export default {
   display: none;
 }
 .item {
-  width: 100%;
-  height: 500px;
-  margin: 0 auto;
   display: flex;
-  background-position: center center;
-  background-size: cover;
   align-items: center;
-  justify-content: center;
-  justify-content:space-between; 
 }
 .arrows {
-  width: 48px;
-  height: 48px;
+  color: #eee;
+  position: absolute;
+  text-shadow: 0.075em 0.08em 0.1em rgba(0, 0, 0, 1);
+
 }
 .arrows:hover {
-  border-color: #d4af37;
+  color: #d4af37;
 }
 .prev{
-  border-bottom: 6px solid;
-  border-left: 6px solid;
-  transform: rotate(45deg);
-  margin-left: 25px;
+  right: 85%;
+}
+.prev::before {
+  content: '\0000AB'
 }
 .next {
-  border-bottom: 6px solid;
-  border-left: 6px solid;
-  transform: rotate(-135deg);
-  margin-right: 25px;
+  left: 85%;
+}
+.next::after {
+  content: '\0000BB'
 }
 .slider-text {
+  text-align: center;
+  line-height: 40px;
   font-weight: 900;
-  font-size: 2em;
+  font-size: 30px;
   color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 0.075em 0.08em 0.1em rgba(0, 0, 0, 1);
+}
+@media screen and (min-width: 320px) {
+  .slider-text {
+    font-size: calc(30px + 6 * ((100vw - 320px) / 680));
+  }
+  .arrows {
+    font-size: 4em;
+  }
+}
+@media screen and (min-width: 700px) {
+  .arrows {
+    font-size: 8em;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .slider-text {
+    font-size: 40px;
+  }
 }
 </style>

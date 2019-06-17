@@ -1,14 +1,23 @@
 <template>
   <section>
-    <toc-slice :title="document.title" :slices="slices"/>
+    <!-- Button to edit document in dashboard -->
+    <prismic-edit-button :documentId="documentId"/>
+    <header-prismic :menuLinks="menuLinks"/>
+    <page-banner :bgImg="document.bgimg" :bgClr="document.bgclr"/>
     <section class="container">
-      <!-- Button to edit document in dashboard -->
-      <prismic-edit-button :documentId="documentId"/>
-      <header-prismic :menuLinks="menuLinks"/>
       <h1>
           {{ $prismic.richTextAsPlain(document.title) }}
       </h1>
-      <slices-block :slices="linkedDoc.body"/>
+      <prismic-rich-text :field="document.intro"/>
+      <div class="intro-buttons">
+        <prismic-link class="button" id="demo-button" :field="document.demo_link">
+          {{ document.demo_text }}
+        </prismic-link>
+        <prismic-link class="button" id="dl-button" :field="document.download_link">
+          {{ document.dl_text }}
+        </prismic-link>
+      </div>
+      <toc-slice :title="document.title" :slices="slices"/>
       <section class="page">
         <div class="content">
           <!-- Slice section template -->
@@ -25,6 +34,7 @@ import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 // Imports for all components
 import HeaderPrismic from '~/components/HeaderPrismic.vue'
+import PageBanner from '~/components/PageBanner.vue'
 import SlicesBlock from '~/components/SlicesBlock.vue'
 import TocSlice from '~/components/TocSlice.vue'
 
@@ -32,6 +42,7 @@ export default {
   name: 'example',
   components: {
     HeaderPrismic,
+    PageBanner,
     SlicesBlock,
     TocSlice
   },
@@ -45,78 +56,9 @@ export default {
       // Fetching the API object
       const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
 
-      const demo = `{
-                    documentation {
-                      title
-                      example_link {
-                        body {
-                          ...on image_carousel {
-                            repeat {
-                              ...repeatFields
-                            }
-                          }
-                          ...on image_gallery {
-                            repeat {
-                              ...repeatFields
-                            }
-                          }
-                        }
-                      }
-                      body {
-                        ...on content_relation {
-                          non-repeat {
-                            demo_link {
-                              ...on example{
-                                body {
-                                  ...on image_carousel {
-                                    repeat {
-                                      ...repeatFields
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                        ...on text_section {
-                          non-repeat {
-                            ...non-repeatFields
-                          }
-                        }
-                        ...on embed {
-                          non-repeat {
-                            ...non-repeatFields
-                          }
-                        }
-                        ...on more_info {
-                          non-repeat {
-                            ...non-repeatFields
-                          }
-                        }
-                        ...on download_button {
-                          non-repeat {
-                            ...non-repeatFields
-                          }
-                        }
-                        ...on code_snippet {
-                          non-repeat {
-                            ...non-repeatFields
-                          }
-                        }
-                        ...on button {
-                          non-repeat {
-                            ...non-repeatFields
-                          }
-                        }
-                      }
-                    }
-                  }`
-
       // Query to get post content
       let document = {}
-      const result = await api.getByUID("documentation", params.uid,
-        { 'graphQuery': demo }
-      )
+      const result = await api.getByUID("documentation", params.uid)
       document = result.data
 
       // Query to get the menu content
@@ -131,8 +73,6 @@ export default {
         // Post content
         document,
         documentId: result.id,
-        //content from link field
-        linkedDoc: document.example_link.data,
         // Set slices as variable
         slices: document.body,
         // Menu
@@ -147,8 +87,70 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 h2.content {
   padding-top: 50px !important;
+}
+
+.intro-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  color: white;
+  padding: 1em 1.5em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 350px;
+  height: 30px;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.button:hover {
+  background-color: #757575;
+  cursor: pointer;
+}
+
+.button:active {
+  box-shadow: none;
+  top: 5px;
+}
+
+#demo-button{
+  background-color: #5163BA;
+  margin-right: 10px;
+}
+
+#demo-button:hover{
+  background-color: #6f7cbb;
+}
+
+#dl-button {
+  background-color: #000;
+}
+
+#dl-button:hover {
+  background-color: #757575;
+}
+/* Media Queries */
+@media (max-width: 1060px) {
+  .button{
+    font-size: 12px;
+  }
+  .banner {
+    height: 60vh;
+  }
+}
+@media (max-width: 757px) {
+  #dl-button {
+    line-height: 14px;
+  }
+  .banner {
+    height: 50vh;
+  }
 }
 </style>

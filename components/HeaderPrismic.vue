@@ -1,17 +1,19 @@
 <template>
   <header class="site-header">
-    <nuxt-link to="/" class="logo">
-      Examples
-    </nuxt-link>
-    <nav>
-      <ul>
-        <li v-for="menuLink in menuLinks" :key="menuLink.id">
-          <prismic-link :field="menuLink.link">
-            {{ $prismic.richTextAsPlain(menuLink.label) }}
-          </prismic-link>
-        </li>
-      </ul>
-    </nav>
+    <section class="wrapper">
+      <nuxt-link to="/" class="logo">
+        Examples
+      </nuxt-link>
+      <nav>
+        <ul>
+          <li v-for="menuLink in menuLinks" :key="menuLink.id">
+            <prismic-link :field="menuLink.link">
+              {{ $prismic.richTextAsPlain(menuLink.label) }}
+            </prismic-link>
+          </li>
+        </ul>
+      </nav>
+    </section>
   </header>
 </template>
 
@@ -25,8 +27,13 @@ export default {
 <style>
 /* Site header */
 .site-header {
-  height: 30px;
-  padding: 50px 0;
+  padding: 50px 0 50px;
+  margin: 0 0 50px 0;
+  background-color: transparent;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 .site-header,
 .site-header a {
@@ -55,6 +62,11 @@ export default {
   margin-left: 40px;
 }
 
+.wrapper {
+  margin: 0 auto;
+  width: 80%;
+}
+
 /* Media Queries */
 @media (max-width: 1060px) {
   .site-header {
@@ -65,6 +77,7 @@ export default {
 @media (max-width: 767px) {
   .site-header {
     height: auto;
+    padding: 50px 0;
   }
   .homepage .site-header {
     position: absolute;
@@ -78,6 +91,9 @@ export default {
   .site-header nav {
     float: none;
     text-align: center;
+  }
+  .site-header nav ul {
+    padding: 15px 0;
   }
   .site-header nav li {
     display: inline-block;

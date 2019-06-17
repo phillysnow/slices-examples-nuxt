@@ -20,8 +20,6 @@ body {
   line-height: 28px;
 }
 a {
-  color: #72767B;
-  font-size: 14px;
   font-weight: 400;
   letter-spacing : 0.35px;
   line-height: 28px;
@@ -42,7 +40,6 @@ h1 {
   margin-bottom: 1rem;
 }
 h2, h2 a {
-  padding-top: 50px; 
   margin-bottom: 1rem;
   color: #484d52;
   font-size: 32px;
@@ -81,7 +78,7 @@ img {
 
 /* General */
 .container, footer {
-  max-width: 80%;
+  max-width: 60%;
   margin: auto;
 }
 .content-section {
