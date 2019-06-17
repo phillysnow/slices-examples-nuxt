@@ -1,5 +1,5 @@
 <template>
-    <section class="banner" :style="{ backgroundColor: bgClr }">
+    <section class="banner" :style="styleObject">
       <prismic-image style="width:60%;" class="main-img" :field="bgImg"/>
     </section>
 </template>
@@ -7,11 +7,18 @@
 <script>
 export default {
   props: ['bgImg', 'bgClr'],
-  name: 'banner-slice'
+  name: 'banner-slice',
+  data: function () {
+    return {
+      styleObject: {
+        backgroundColor: this.bgClr
+      }
+    }
+  }
 }
 </script>
 
-<style>
+<style scoped>
 .banner {
   height: 75vh;
   display: flex;
