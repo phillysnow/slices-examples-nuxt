@@ -68,12 +68,6 @@ export default {
 }
 
 /* Media Queries */
-@media (max-width: 1060px) {
-  .site-header {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
 @media (max-width: 767px) {
   .site-header {
     height: auto;

@@ -118,6 +118,11 @@ img {
   font-size: 24px;
 }
 /* Media Queries */
+@media (max-width: 1060px) {
+  .container, footer {
+    max-width: 80%;
+  }
+}
 @media (max-width: 767px) {
   h1 {
     font-size: 32px;
@@ -132,4 +137,7 @@ img {
   .content-section {
     margin-bottom: 2rem;
   } 
+  .container, footer {
+    max-width: 90%;
+  }
 }

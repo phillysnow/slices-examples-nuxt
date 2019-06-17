@@ -138,16 +138,13 @@ h2.content {
 }
 /* Media Queries */
 @media (max-width: 1060px) {
-  .button{
-    font-size: 12px;
-  }
   .banner {
     height: 60vh;
   }
 }
 @media (max-width: 757px) {
   #dl-button {
-    line-height: 14px;
+    line-height: 15px;
   }
   .banner {
     height: 50vh;

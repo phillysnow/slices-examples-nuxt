@@ -57,7 +57,7 @@ export default {
 <style>
 .carousel {
   position: relative;
-  margin-top: 100px;
+  margin-top: 5vh;
 }
 .fade-enter-active, .fade-leave-active {
   transition: all 0.8s ease;
