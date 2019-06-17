@@ -3,7 +3,7 @@
     <!-- Button to edit document in dashboard -->
     <prismic-edit-button :documentId="documentId"/>
     <header-prismic :menuLinks="menuLinks"/>
-    <page-banner :bgImg="document.bgimg" :bgClr="document.bgclr"/>
+    <page-banner :bgImg="bgImg" :bgClr="bgClr"/>
     <section class="container">
       <h1>
           {{ $prismic.richTextAsPlain(document.title) }}
@@ -73,6 +73,8 @@ export default {
         // Post content
         document,
         documentId: result.id,
+        bgImg: document.bgimg,
+        bgClr: document.bgclr,
         // Set slices as variable
         slices: document.body,
         // Menu
