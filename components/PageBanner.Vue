@@ -7,7 +7,7 @@
 <script>
 export default {
   props: ['bgImg', 'bgClr'],
-  name: 'banner-slice',
+  name: 'page-banner',
   data: function () {
     return {
       styleObject: {
