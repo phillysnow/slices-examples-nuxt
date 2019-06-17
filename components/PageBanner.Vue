@@ -1,7 +1,7 @@
 <template>
-    <section class="banner" :style="styleObject">
-      <prismic-image style="width:60%;" class="main-img" :field="bgImg"/>
-    </section>
+  <section class="banner" :style="styleObject">
+    <prismic-image style="width:60%;" class="main-img" :field="bgImg"/>
+  </section>
 </template>
 
 <script>
