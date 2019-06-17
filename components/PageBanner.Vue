@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  props: ['bgImg', 'bgClr'],
+  props: ['bgImg','bgClr'],
   name: 'page-banner',
   data: function () {
     return {
