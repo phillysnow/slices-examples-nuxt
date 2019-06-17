@@ -3,7 +3,7 @@
     <!-- Button to edit document in dashboard -->
     <prismic-edit-button :documentId="documentId"/>
     <header-prismic :menuLinks="menuLinks"/>
-    <page-banner :bgImg="bgImg" :bgClr="bgClr"/>
+    <page-banner :bgImg="document.bgimg" :bgClr="document.bgclr"/>
     <section class="container">
       <h1>
           {{ $prismic.richTextAsPlain(document.title) }}
@@ -34,16 +34,16 @@ import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 // Imports for all components
 import HeaderPrismic from '~/components/HeaderPrismic.vue'
-import PageBanner from '~/components/PageBanner.vue'
 import SlicesBlock from '~/components/SlicesBlock.vue'
+import PageBanner from '~/components/PageBanner.vue'
 import TocSlice from '~/components/TocSlice.vue'
 
 export default {
   name: 'example',
   components: {
     HeaderPrismic,
-    PageBanner,
     SlicesBlock,
+    PageBanner,
     TocSlice
   },
   head () {
@@ -73,8 +73,6 @@ export default {
         // Post content
         document,
         documentId: result.id,
-        bgImg: document.bgimg,
-        bgClr: document.bgclr,
         // Set slices as variable
         slices: document.body,
         // Menu
