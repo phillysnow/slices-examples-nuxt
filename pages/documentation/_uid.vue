@@ -13,9 +13,9 @@
         <prismic-link class="button" id="demo-button" :field="document.demo_link">
           {{ document.demo_text }}
         </prismic-link>
-        <prismic-link class="button" id="dl-button" :field="document.download_link">
+        <a class="button" id="dl-button" @click="downloadComponent">
           {{ document.dl_text }}
-        </prismic-link>
+        </a>
       </div>
       <toc-slice :title="document.title" :slices="slices"/>
       <section class="page">
@@ -30,6 +30,7 @@
 
 
 <script>
+import axios from "axios";
 import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 // Imports for all components
@@ -73,6 +74,7 @@ export default {
         // Post content
         document,
         documentId: result.id,
+        url: document.download_link.url,
         // Set slices as variable
         slices: document.body,
         // Menu
@@ -84,6 +86,31 @@ export default {
       error({ statusCode: 404, message: 'Page not found' })
     }
   },
+  methods: {
+
+    forceFileDownload(response){
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', this.url.substring(this.url.lastIndexOf('/') + 1))
+      document.body.appendChild(link);
+      link.click();
+    },
+
+    downloadComponent(url) {
+      axios({
+        method: 'get',
+        url: this.url,
+        responseType: 'arraybuffer',
+      })
+      .then(response => {
+        this.forceFileDownload(response)
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+    }
+  }
 }
 </script>
 
@@ -104,7 +131,6 @@ h2.content {
   text-decoration: none;
   text-transform: uppercase;
   width: 350px;
-  height: 30px;
   border-radius: 3px;
   text-align: center;
   line-height: 30px;

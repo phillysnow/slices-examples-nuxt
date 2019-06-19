@@ -1,22 +1,46 @@
 <template>
   <div class="content-section">
-    <a :href="link.url" class="button" :download="slice.primary.file_name">
+    <a @click="downloadComponent" class="button">
       {{ slice.primary.button_text }}
     </a>
   </div>
-</template>
+</template>  
 
 <script>
+import axios from "axios";
+
 export default {
   props: ['slice'],
   name: 'download-button',
-  data: function() {
+  data() {
     return {
-      link: ''
+      url: this.slice.primary.button_link.url
     }
   },
-  created () {
-    this.link = this.slice.primary.button_link
+  methods: {
+
+    forceFileDownload(response){
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', this.url.substring(this.url.lastIndexOf('/') + 1))
+      document.body.appendChild(link);
+      link.click();
+    },
+
+    downloadComponent(url) {
+      axios({
+        method: 'get',
+        url: this.url,
+        responseType: 'arraybuffer',
+      })
+      .then(response => {
+        this.forceFileDownload(response)
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+    }
   }
 }
 </script>
@@ -30,8 +54,7 @@ export default {
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
-  width: 350px;
-  height: 30px;
+  width: 100%;
   border-radius: 3px;
   text-align: center;
   line-height: 30px;
