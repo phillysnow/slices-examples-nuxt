@@ -18,6 +18,8 @@
     "express": "^4.16.4",
     "node-pre-gyp": "^0.13.0",
     "nuxt": "^2.8.0",
+    "nuxt-clipboard2": "^0.2.1",
+    "prism": "^4.1.2",
     "prismic-dom": "^2.1.0",
     "prismic-javascript": "^2.0.1",
     "prismic-vue": "git+https://github.com/prismicio/prismic-vue.git#nuxt",
