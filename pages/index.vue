@@ -2,17 +2,12 @@
   <section class="homepage">
     <!-- Button to edit document in dashboard -->
     <prismic-edit-button :documentId="documentId"/>
+    <!-- Menu Links -->
+    <header-prismic :menuLinks="menuLinks"/>
+     <!-- Banner including image and text -->
+    <home-banner :bnrImg="document.banner_image" :bnrTag="document.tagline" :bnrTxt="document.text" />
     <!-- Template for page title. -->
-    <div class="container">
-      <header-prismic :menuLinks="menuLinks"/>
-      <section class="home-content">
-        <p class="text">
-          {{ $prismic.richTextAsPlain(document.text) }}
-        </p>
-        <!-- Vue tag to add examples component -->
-        <examples-grid :examples="examples"/>
-      </section>
-    </div>
+    <examples-grid :examples="examples"/>
   </section>
 </template>
 
@@ -21,17 +16,24 @@ import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 // imports for all components
 import HeaderPrismic from '~/components/HeaderPrismic.vue'
+import HomeBanner from '~/components/HomeBanner.vue'
 import ExamplesGrid from '~/components/ExamplesGrid.vue'
 
 export default {
   name: 'homepage',
   components: {
     HeaderPrismic,
+    HomeBanner,
     ExamplesGrid
   },
   head () {
     return {
-      title: 'Prismic Nuxt.js Multi Page Website',
+      title: 'Prismic and Nuxt.js components Website',
+      meta: [{ 
+        hid: 'description', 
+        name: 'description', 
+        content: 'Advanced Nuxt components built using dynamic data from Prismic Slices'
+      }]
     }
   },
   async asyncData({context, error, req}) {
@@ -76,9 +78,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.home-content{
-  margin-top: 150px;
-}
-</style>

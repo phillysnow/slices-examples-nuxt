@@ -43,6 +43,7 @@ export default {
   margin: 50px 0 50px 0;
 }
 button {
+  position: relative;
   margin-bottom: 0;
   background-color: #2C2C2C;
   color: #fff;

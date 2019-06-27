@@ -48,8 +48,14 @@ export default {
     TocSlice
   },
   head () {
+    let document = this.document;
     return {
-      title: 'Prismic Nuxt.js Component Slices',
+      title: document.page_meta_title[0].text,
+      meta: [{ 
+        hid: 'description', 
+        name: 'description', 
+        content: document.page_meta_description[0].text
+      }]
     }
   },
   async asyncData({params, error, req}) {
