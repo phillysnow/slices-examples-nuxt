@@ -1,20 +1,11 @@
 <template>
   <section>
     <div class="filterbar">
-      <ul>
-        <li>
-          <label>
-            <input v-model="selected" :value="tags[0]" type="checkbox">
-            ALL
-          </label>
-        </li>
-        <li v-for="(tag, index) in tags" :key="'tag-' + index">
-          <label>
-            <input v-model="selected" :value="tag" type="checkbox">
-            {{ tag }}
-          </label>
-        </li>
-      </ul>
+      <label><input type="radio" v-model="selectedTag" value="All" checked="checked"/><span>All</span></label>
+      <label v-for="(tag, index) in tags" :key="'tag-' + index">
+        <input type="radio" v-model="selectedTag" :value="tag" >
+        <span>{{ tag }}</span>
+      </label>
     </div>
     <div class="container">
       <div class="auto-grid">
@@ -45,24 +36,25 @@ export default {
     return {
       linkResolver: this.$prismic.linkResolver,
       tags: null,
-      selected:[]
+      selectedTag: "All"
     }
   },
   created() {
     this.tags = this.getTags()
   },
   computed:{
-    filteredExamples(){
-      return this.examples.filter(example => {
-        let valid = true
-        this.selected.forEach(selected => {
-          if (example.tags.indexOf(selected) === -1) {
-            valid = false
-          }
-        })
-        return valid
-      })
-    }
+    filteredExamples: function() {
+			var vm = this;
+			var tag = vm.selectedTag;
+			
+			if(tag === "All") {
+				return vm.examples;
+			} else {
+				return vm.examples.filter(function(example) {
+					return example.tags.includes(tag);
+				});
+			}
+		}
   },
   methods: {
     getTags() {
@@ -95,16 +87,10 @@ export default {
   box-shadow: 0 1px 2px rgba(0,0,0,0.07);
   margin-bottom: 50px;
   padding: 20px 30px;
-}
-.filterbar ul {
   text-align: center;
-  margin: 0;
 }
-.filterbar li {
-  display: inline-block;
+.filterbar span {
   margin: 0 5px;
-  padding: 0 5px;
-  color: #757575;
   padding: 10px 12px;
   border-radius: 7px;
   line-height: 1;
@@ -112,16 +98,19 @@ export default {
   -webkit-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out;
 }
-.filterbar li:hover {
-  background-color: #E3EEF5;
-  color: #3A8BBB;
-  cursor: pointer;
-}
-.filterbar li:active {
+:checked + span {
   background-color: #E3EEF5;
   color: #3A8BBB;
   font-weight: 500;
   cursor: pointer;
+}
+.filterbar span:hover {
+  background-color: #E3EEF5;
+  color: #3A8BBB;
+  cursor: pointer;
+}
+.filterbar label input {
+  display: none;
 }
 .auto-grid {
   --auto-grid-min-size: 16rem;
