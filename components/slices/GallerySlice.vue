@@ -1,5 +1,5 @@
 <template>
-  <section id="core">
+  <section id="core" class="container">
     <prismic-rich-text :field="slice.primary.gallery_title"/>
     <dl>
       <dt v-for="(item, index) in items" :key="'item-' + index">

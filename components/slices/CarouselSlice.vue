@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .carousel {
   position: relative;
   margin-top: 5vh;

@@ -42,6 +42,10 @@
             <template v-else-if="slice.slice_type === 'embed'">
                 <embed-slice :slice="slice"/>
             </template>
+            <!-- Parallax slice component -->
+            <template v-else-if="slice.slice_type === 'banner_with_caption'">
+                <parallax-cta :slice="slice"/>
+            </template>
         </section>
     </section>
 </template>
@@ -58,6 +62,7 @@ const DownloadButton = () => import("../components/slices/DownloadButton.vue");
 const CodeSlice = () => import("../components/slices/CodeSlice.vue");
 const InfoSlice = () => import("../components/slices/InfoSlice.vue");
 const EmbedSlice = () => import("../components/slices/EmbedSlice.vue");
+const ParallaxCta = () => import("../components/slices/ParallaxCta.vue");
 
 export default {
   props: ['slices'],
@@ -72,7 +77,8 @@ export default {
     DownloadButton,
     CodeSlice,
     InfoSlice,
-    EmbedSlice
+    EmbedSlice,
+    ParallaxCta
   },
 }
 </script>

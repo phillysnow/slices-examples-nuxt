@@ -4,18 +4,20 @@
     <prismic-edit-button :documentId="documentId"/>
     <header-prismic :menuLinks="menuLinks"/>
     <page-banner :bgImg="document.bgimg" :bgClr="document.bgclr"/>
-    <section class="container">
-      <h1>
-          {{ $prismic.richTextAsPlain(document.title) }}
-      </h1>
-      <prismic-rich-text :field="document.intro"/>
-      <div class="intro-buttons">
-        <prismic-link class="button" id="demo-button" :field="document.demo_link">
-          {{ document.demo_text }}
-        </prismic-link>
-        <a class="button" id="dl-button" @click="downloadComponent">
-          {{ document.dl_text }}
-        </a>
+    <section>
+      <div class="container">
+        <h1>
+            {{ $prismic.richTextAsPlain(document.title) }}
+        </h1>
+        <prismic-rich-text :field="document.intro"/>
+        <div class="intro-buttons">
+          <prismic-link class="button" id="demo-button" :field="document.demo_link">
+            {{ document.demo_text }}
+          </prismic-link>
+          <a class="button" id="dl-button" @click="downloadComponent">
+            {{ document.dl_text }}
+          </a>
+        </div>
       </div>
       <toc-slice :title="document.title" :slices="slices"/>
       <section class="page">

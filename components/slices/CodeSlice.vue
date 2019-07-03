@@ -1,5 +1,5 @@
 <template>
-  <section class="block">
+  <section class="block container">
     <button @click="doCopy">{{ btntext }}</button>
     <prism :language="slice.primary.lang">{{ $prismic.richTextAsPlain(slice.primary.code) }}</prism>
   </section>
@@ -41,6 +41,7 @@ export default {
 <style scoped>
 .block {
   margin: 50px 0 50px 0;
+  margin: 0 auto;
 }
 button {
   position: relative;

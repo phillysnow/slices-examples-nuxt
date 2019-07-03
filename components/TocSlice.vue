@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="container">
         <h2 class="title">Table of Contents</h2>
         <ul>
             <section v-for="(slice, index) in slices" :key="`slice-${index}`">

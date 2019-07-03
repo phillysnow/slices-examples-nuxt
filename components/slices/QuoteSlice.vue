@@ -1,5 +1,5 @@
 <template>
-  <section class='content-section quote'>
+  <section class='content-section quote container'>
     <blockquote class="block-quotation">{{ $prismic.richTextAsPlain(slice.primary.quote) }}</blockquote>
     <h4 class="citation">{{ $prismic.richTextAsPlain(slice.primary.citation) }}</h4>
   </section>

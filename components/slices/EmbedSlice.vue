@@ -1,5 +1,5 @@
 <template>
-  <section class="content-section">
+  <section class="content-section container">
     <span v-html="slice.primary.embed_field"></span>
   </section>
 </template>

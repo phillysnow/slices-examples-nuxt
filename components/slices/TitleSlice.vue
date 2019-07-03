@@ -1,5 +1,7 @@
 <template>
-  <prismic-rich-text class="content-section title" :field="slice.primary.heading"/>
+  <div class="container">
+    <prismic-rich-text class="content-section title" :field="slice.primary.heading"/>
+  </div>
 </template>
 
 <script>

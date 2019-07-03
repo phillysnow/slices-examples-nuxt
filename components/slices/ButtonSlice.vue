@@ -1,5 +1,5 @@
 <template>
-  <div class="content-section">
+  <div class="content-section container">
     <prismic-link class="button" :field="slice.primary.button_link">
       {{ slice.primary.button_text }}
     </prismic-link>

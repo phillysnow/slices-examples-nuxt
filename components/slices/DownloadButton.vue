@@ -1,5 +1,5 @@
 <template>
-  <div class="content-section">
+  <div class="content-section container">
     <a @click="downloadComponent" class="button">
       {{ slice.primary.button_text }}
     </a>

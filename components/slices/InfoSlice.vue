@@ -1,5 +1,7 @@
 <template>
-  <prismic-rich-text class="modeling-more-info" :field="slice.primary.text"/>
+	<div class="container">
+  	<prismic-rich-text class="modeling-more-info" :field="slice.primary.text"/>
+	</div>
 </template>
 
 <script>
