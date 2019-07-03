@@ -1,5 +1,5 @@
 <template>
-	<div class="parallax" :class="`${slice.slice_label}`" :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), url(${slice.primary.image_banner.url})` }">
+	<div class="parallax" :class="`${slice.primary.height}`" :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), url(${slice.primary.image_banner.url})`, textAlign: `${slice.primary.text_align}`}">
 		<div class="container">
 			<prismic-rich-text class="bnrtxt" :field="slice.primary.title_of_banner"/>
 			<prismic-rich-text class="bnrdesc" :field="slice.primary.description"/>
@@ -22,7 +22,6 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  text-align: left;
 	margin-bottom: 50px;
   position: relative;
 }
