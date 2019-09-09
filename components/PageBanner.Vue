@@ -1,8 +1,6 @@
 <template>
-  <section class="banner">
-    <div :style="`backgroundColor:${bgClr}`">
+  <section class="banner" >
     <prismic-image style="width:60%;" class="main-img" :field="bgImg"/>
-    </div>
   </section>
 </template>
 
