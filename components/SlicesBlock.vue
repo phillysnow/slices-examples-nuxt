@@ -46,6 +46,18 @@
             <template v-else-if="slice.slice_type === 'banner_with_caption'">
                 <parallax-cta :slice="slice"/>
             </template>
+            <!-- Testimonials slice component -->
+            <template v-else-if="slice.slice_type === 'testimonials'">
+                <testimonials-section :slice="slice"/>
+            </template>
+            <!-- Features section slice component -->
+            <template v-else-if="slice.slice_type === 'features_section'">
+                <features-section :slice="slice"/>
+            </template>
+            <!-- Hero section slice component -->
+            <template v-else-if="slice.slice_type === 'hero_section'">
+                <hero-section :slice="slice"/>
+            </template>
         </section>
     </section>
 </template>
@@ -63,6 +75,9 @@ const CodeSlice = () => import("../components/slices/CodeSlice.vue");
 const InfoSlice = () => import("../components/slices/InfoSlice.vue");
 const EmbedSlice = () => import("../components/slices/EmbedSlice.vue");
 const ParallaxCta = () => import("../components/slices/ParallaxCta.vue");
+const TestimonialsSection = () => import("../components/slices/TestimonialsSection.vue");
+const FeaturesSection = () => import("../components/slices/FeaturesSection.vue");
+const HeroSection = () => import("../components/slices/HeroSection.vue");
 
 export default {
   props: ['slices'],
@@ -78,7 +93,10 @@ export default {
     CodeSlice,
     InfoSlice,
     EmbedSlice,
-    ParallaxCta
+    ParallaxCta,
+    TestimonialsSection,
+    FeaturesSection,
+    HeroSection
   },
 }
 </script>
