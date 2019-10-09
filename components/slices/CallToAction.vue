@@ -2,13 +2,13 @@
   <section class="canvas">
     <slot name="header"  :header="slice.primary">
       <div class="header">
+        <prismic-image :field="slice.primary.icon_image "/>
         <h1> {{ $prismic.richTextAsPlain(slice.primary.title) }} </h1>
         <p> {{ $prismic.richTextAsPlain(slice.primary.paragraph) }} </p>
       </div>
     </slot>
     <div class="call-to-action">
       <slot name="call-to-action"  :callToAction="slice.primary">
-        <input type="text" :placeholder="slice.primary.placeholder"/>
         <input 
           type="button" 
           :value="slice.primary.button_label" 
@@ -22,7 +22,7 @@
 <script>
 export default {
   props: ['slice'],
-  name: 'hero-section'
+  name: 'call-to-action',
 }
 </script>
 
@@ -38,10 +38,15 @@ export default {
 }
 
 .header {
+  img {
+    width: 68px;
+    padding-bottom: 15px;
+  }
+
   h1 {
     font-weight: 700;
-    font-size: 64px;
-    line-height: 84px;
+    font-size: 48px;
+    line-height: 64px;
   }
 
   p {
@@ -64,25 +69,11 @@ input {
   box-shadow: 0px 2px 4px 0px rgba(136,136,136,0.24);
 }
 
-input[type=text] {
-  padding: 0 1em;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  text-decoration: none;
-  width: 370px;
-  height: 52px;
-  border: 1px solid #F2F2F2;
-  border-radius: 3px;
-  text-align: left;
-  font-size: 14px;
-  line-height: 30px;
-}
-
 input[type=button] {
   background-color: #007AFF;
   color: white;
   text-decoration: none;
-  width: 120px;
+  width: 134px;
   height: 52px;
   border: 1px solid rgb(2, 89, 182);
   border-radius: 3px;
@@ -108,22 +99,6 @@ input[type=button] {
   }
 }
 
-@media (max-width: 1000px) {
-  .header {
-    h1 {
-      font-size: 54px;
-    }
-
-    p {
-      font-size: 18px;
-    }
-  }
-
-  input[type=text]{
-    width: 250px;
-  }
-}
-
 @media (max-width: 850px) {
   .header {
     h1 {
@@ -139,10 +114,6 @@ input[type=button] {
 }
 
 @media (max-width: 757px) {
-  input[type=text]{
-    margin-right: 0;
-  }
-
   input[type=button]{
     width: 278px;
   }

@@ -1,21 +1,25 @@
 <template>
   <section class="canvas">
-    <div class="intro">
-      <h1 class="title"> {{ $prismic.richTextAsPlain(slice.primary.title) }} </h1>
-      <p class="paragraph"> {{ $prismic.richTextAsPlain(slice.primary.paragraph) }} </p>
+    <div class="header">
+      <slot name="header" :header="slice.primary">
+        <h1> {{ $prismic.richTextAsPlain(slice.primary.title) }} </h1>
+        <p> {{ $prismic.richTextAsPlain(slice.primary.paragraph) }} </p>
+      </slot>
     </div>
     <div class="grid">  
-    <div v-for="(item, index) in slice.items" :key="'item-' + index" class="grid-item">
-      <prismic-image class="icon-img" :alt="item.alt" :field="item.icon_image "/>
-      <h2 class="head"> {{ $prismic.richTextAsPlain(item.head) }} </h2>
-      <p class="desc"> {{ $prismic.richTextAsPlain(item.desc) }} </p>
-      <input 
-        type="button" 
-        :value="item.button_label" 
-        :onclick="`window.location.href='${item.button_link.url}'`" 
-      />
-    </div>  
-  </div>
+      <div class="grid-item" v-for="(item, index) in slice.items" :key="'item-' + index">
+        <slot :id="index" name="item" :item="item">
+          <prismic-image :alt="item.alt" :field="item.icon_image "/>
+          <h2> {{ $prismic.richTextAsPlain(item.head) }} </h2>
+          <p> {{ $prismic.richTextAsPlain(item.desc) }} </p>
+          <input 
+            type="button" 
+            :value="item.button_label" 
+            :onclick="`window.location.href='${item.button_link.url}'`" 
+          />
+        </slot>
+      </div>  
+    </div>
   </section>
 </template>
 
@@ -34,10 +38,21 @@ export default {
   text-align: center;
 }
 
-.intro{
-  width: 50%;
+.header{
   padding: 75px 50px 50px 50px;
   margin: 0 auto;
+
+  h1 {
+    font-size: 48px;
+    line-height: 64px;
+  }
+
+  p {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 22px;
+    line-height: 38px;
+  }
 }
 
 .grid{
@@ -50,22 +65,24 @@ export default {
 .grid-item{
   padding: 0 60px;
   border-right: 1px solid rgba(151, 151, 151, 0.2);
+
+  h2, p{
+  padding: 5px 0;
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  p{
+    font-size: 16px;
+    line-height: 24px;
+  }
+
   &:last-child{
     border-right: 0;
   }
-}
-
-.head,.desc{
-  padding: 5px 0;
-  line-height: 24px;
-}
-
-.head {
-  line-height: 36px;
-}
-
-.desc{
-  line-height: 24px;
 }
 
 input[type=button] {
@@ -93,21 +110,26 @@ input[type=button] {
   }
 }
 
-@media (max-width: 1200px) {
-  .intro{
-    width: 70%;
-    padding: 75px 0 0 0;
+@media (max-width: 1500px) {
+  .header{
+    padding: 75px 0 30px 0;
+
+    p{
+      width: 70%;
+      margin-bottom: 20px;
+    }
   }
 }
 
 @media (max-width: 899px) {
-  .intro{
-    width: 100%;
+  .header{
     padding: 75px 0 0 0;
+
+    p{
+      width: 95%;
+    }
   }
-  .paragraph {
-    margin: 0;
-  }
+
   .grid{
     grid-auto-flow: row;
     grid-template-rows: 1fr 1fr 1fr;

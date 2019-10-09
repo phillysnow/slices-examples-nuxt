@@ -58,6 +58,18 @@
             <template v-else-if="slice.slice_type === 'hero_section'">
                 <hero-section :slice="slice"/>
             </template>
+            <!-- CTA section slice component -->
+            <template v-else-if="slice.slice_type === 'call_to_action'">
+                <call-to-action :slice="slice"/>
+            </template>
+            <!-- Graphic section slice component -->
+            <template v-else-if="slice.slice_type === 'graphic_section'">
+                <graphic-section :slice="slice"/>
+            </template>
+            <!-- Video section slice component -->
+            <template v-else-if="slice.slice_type === 'video_carousel_section'">
+                <video-carousel :slice="slice"/>
+            </template>
         </section>
     </section>
 </template>
@@ -78,6 +90,9 @@ const ParallaxCta = () => import("../components/slices/ParallaxCta.vue");
 const TestimonialsSection = () => import("../components/slices/TestimonialsSection.vue");
 const FeaturesSection = () => import("../components/slices/FeaturesSection.vue");
 const HeroSection = () => import("../components/slices/HeroSection.vue");
+const CallToAction = () => import("../components/slices/CallToAction.vue");
+const GraphicSection = () => import("../components/slices/GraphicSection.vue");
+const VideoCarousel = () => import("../components/slices/VideoCarousel.vue");
 
 export default {
   props: ['slices'],
@@ -96,7 +111,10 @@ export default {
     ParallaxCta,
     TestimonialsSection,
     FeaturesSection,
-    HeroSection
+    HeroSection,
+    CallToAction,
+    GraphicSection,
+    VideoCarousel
   },
 }
 </script>
