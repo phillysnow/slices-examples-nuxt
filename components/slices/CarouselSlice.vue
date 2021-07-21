@@ -58,6 +58,8 @@ export default {
 .carousel {
   position: relative;
   margin-top: 5vh;
+  max-width: 80%;
+  margin: 0 auto;
 }
 .fade-enter-active, .fade-leave-active {
   transition: all 0.8s ease;
