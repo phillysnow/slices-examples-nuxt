@@ -27,10 +27,8 @@ export default {
 <style>
 /* Site header */
 .site-header {
-  padding: 50px 0 50px;
-  margin: 0 0 50px 0;
+  padding: 50px 0 25px;
   background-color: transparent;
-  position: absolute;
   width: 100%;
   top: 0;
   left: 0;

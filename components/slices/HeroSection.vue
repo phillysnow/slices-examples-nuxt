@@ -8,12 +8,7 @@
     </slot>
     <div class="call-to-action">
       <slot name="call-to-action"  :callToAction="slice.primary">
-        <input type="text" :placeholder="slice.primary.placeholder"/>
-        <input 
-          type="button" 
-          :value="slice.primary.button_label" 
-          :onclick="`window.location.href='${slice.primary.button_link.url}'`" 
-        />
+        {{ slice }}
       </slot>
     </div>
   </section>
